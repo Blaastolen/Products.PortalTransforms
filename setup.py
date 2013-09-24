@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '2.1.2.1-blaast'
+version = '2.1.2.2-blaast'
 
 setup(name='Products.PortalTransforms',
       version=version,
