@@ -59,8 +59,8 @@ class pdf_to_html(commandtransform):
         except UnicodeDecodeError as e:
             # pdftohtml includes an outline of the pages at the end and
             # doesn't use utf-8 for the encoding, so we just cut it off
-            outline_start = body.lower().index('<a name="outline"')
-            if e.start > outline_start:
+            outline_start = body.lower().rfind('<a name="outline"')
+            if outline_start > 0 and e.start > outline_start:
                 body = body[:outline_start]
         cache.setData(body)
         cache.setSubObjects(objects)
