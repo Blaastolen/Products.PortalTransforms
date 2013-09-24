@@ -4,6 +4,11 @@ Changelog
 2.1.3 (unreleased)
 ------------------
 
+- Remove '\xfe\xff' from result of pdftohtml command. It seems like OpenOffice
+  generates PDFs which cause pdftohtml to include these in the TOC links. They
+  cause Unicode conversion errors in for example Solr.
+  [fschulze]
+
 - In the safe_html transform escape attribute values if python > 2.4.
   [enfold_josh]
 

@@ -76,7 +76,7 @@ class pdf_to_html(commandtransform):
             except:
                 return ("transform failed while running %s (maybe this pdf "
                         "file doesn't support transform)" % cmd)
-        return html
+        return html.replace('\xfe\xff', '')
 
 
 def register():
