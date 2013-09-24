@@ -53,7 +53,16 @@ class pdf_to_html(commandtransform):
         if images:
             self.fixImages(path, images, objects)
         self.cleanDir(tmpdir)
-        cache.setData(bodyfinder(html))
+        body = bodyfinder(html)
+        try:
+            body.decode('utf-8')
+        except UnicodeDecodeError as e:
+            # pdftohtml includes an outline of the pages at the end and
+            # doesn't use utf-8 for the encoding, so we just cut it off
+            outline_start = body.lower().index('<a name="outline"')
+            if e.start > outline_start:
+                body = body[:outline_start]
+        cache.setData(body)
         cache.setSubObjects(objects)
         return cache
 
@@ -76,7 +85,7 @@ class pdf_to_html(commandtransform):
             except:
                 return ("transform failed while running %s (maybe this pdf "
                         "file doesn't support transform)" % cmd)
-        return html.replace('\xfe\xff', '')
+        return html
 
 
 def register():
