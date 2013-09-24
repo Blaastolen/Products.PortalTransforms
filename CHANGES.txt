@@ -1,8 +1,8 @@
 Changelog
 =========
 
-2.1.3 (unreleased)
-------------------
+2.1.2.1-blaast (2013-09-24)
+---------------------------
 
 - Remove '\xfe\xff' from result of pdftohtml command. It seems like OpenOffice
   generates PDFs which cause pdftohtml to include these in the TOC links. They
