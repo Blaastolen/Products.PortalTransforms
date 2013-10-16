@@ -1,6 +1,7 @@
 *.pyc
 *.egg-info
 bin
+dist
 lib
 include
 parts
